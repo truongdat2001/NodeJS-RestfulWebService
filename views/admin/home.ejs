@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <%- include('./layout/head.ejs') %>
+</head>
+
+<body>
+    <div id="app">
+        <nav id="navbar-main" class="navbar is-fixed-top">
+            <div class="navbar-brand">
+                <a class="navbar-item mobile-aside-button">
+                    <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
+                </a>
+            </div>
+            <div class="navbar-brand is-right">
+                <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
+                    <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
+                </a>
+            </div>
+            <div class="navbar-menu" id="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item dropdown has-divider has-user-avatar">
+                        <a class="navbar-link">
+                            <div class="user-avatar">
+                                <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe"
+                                    class="rounded-full">
+                            </div>
+                            <div class="is-user-name"><span>
+                                    <%= username %>
+                                </span></div>
+                            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="/">
+                                <span>Về trang bán hàng</span>
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item" href="/admin/logout">
+                                <span class="icon"><i class="mdi mdi-logout"></i></span>
+                                <span>Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <aside class="aside is-placed-left is-expanded">
+            <div class="aside-tools">
+                <div>
+                    Admin
+                </div>
+            </div>
+            <div class="menu is-menu-main">
+                <ul class="menu-list">
+                    <li class="active">
+                        <a href="/admin/">
+                            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+                            <span class="menu-item-label">Tổng quan</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="menu-list">
+                    <li class="--set-active-profile-html">
+                        <a href="/admin/users">
+                            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                            <span class="menu-item-label">Người dùng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label">Loại Sách</span>
+                            <span class="icon"><i class="mdi mdi-plus"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/admin/listcatalog">
+                                    <span>Danh sách loại</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/newcatalog">
+                                    <span>Thêm loại</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label"> Sản phẩm</span>
+                            <span class="icon"><i class="mdi mdi-plus"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/admin/listproducts">
+                                    <span>Danh sách sản phẩm</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/newproduct">
+                                    <span>Thêm Sản Phẩm</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label">Bình luận</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </aside>
+
+        <section class="is-hero-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <h1 class="title">
+                    Tổng quan
+                </h1>
+            </div>
+        </section>
+
+        <section class="section main-section">
+            <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="flex items-center justify-between">
+                            <div class="widget-label">
+                                <h3>
+                                    Tổng số tài khoản
+                                </h3>
+                                <h1>
+                                    0
+                                </h1>
+                            </div>
+                            <span class="icon widget-icon text-green-500"><i
+                                    class="mdi mdi-account-multiple mdi-48px"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="flex items-center justify-between">
+                            <div class="widget-label">
+                                <h3>
+                                    Tổng số bình luận
+                                </h3>
+                                <h1>
+                                    0
+                                </h1>
+                            </div>
+                            <span class="icon widget-icon text-red-500"><i style="font-size: 2rem;"
+                                    class="fa-solid fa-comment"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts below are for demo only -->
+    <script type="text/javascript" src="/js/admin/main.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="/js/admin/chart.sample.min.js"></script>
+
+
+    <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+
+</body>
+
+</html>

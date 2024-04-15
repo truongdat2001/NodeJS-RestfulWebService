@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <title>Người dùng</title>
+    <%- include('./layout/head.ejs') %>
+</head>
+
+<body>
+    <div id="app">
+        <nav id="navbar-main" class="navbar is-fixed-top">
+            <div class="navbar-brand">
+                <a class="navbar-item mobile-aside-button">
+                    <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
+                </a>
+            </div>
+            <div class="navbar-brand is-right">
+                <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
+                    <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
+                </a>
+            </div>
+            <div class="navbar-menu" id="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item dropdown has-divider has-user-avatar">
+                        <a class="navbar-link">
+                            <div class="user-avatar">
+                                <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe"
+                                    class="rounded-full">
+                            </div>
+                            <div class="is-user-name"><span>
+                                    <%= username %>
+                                </span></div>
+                            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a href="" class="navbar-item">
+                                <span class="icon"><i class="mdi mdi-account"></i></span>
+                                <span>My Profile</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon"><i class="mdi mdi-settings"></i></span>
+                                <span>Settings</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon"><i class="mdi mdi-email"></i></span>
+                                <span>Messages</span>
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item" href="/admin/logout">
+                                <span class="icon"><i class="mdi mdi-logout"></i></span>
+                                <span>Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <aside class="aside is-placed-left is-expanded">
+            <div class="aside-tools">
+                <div>
+                    Admin
+                </div>
+            </div>
+            <div class="menu is-menu-main">
+                <ul class="menu-list">
+                    <li class="">
+                        <a href="/admin/">
+                            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+                            <span class="menu-item-label">Tổng quan</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="menu-list">
+                    <li class="active">
+                        <a href="/admin/users">
+                            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                            <span class="menu-item-label">Người dùng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label">Loại Sách</span>
+                            <span class="icon"><i class="mdi mdi-plus"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/admin/listcatalog">
+                                    <span>Danh sách loại</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/newcatalog">
+                                    <span>Thêm loại</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label"> Sản phẩm</span>
+                            <span class="icon"><i class="mdi mdi-plus"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/admin/listproducts">
+                                    <span>Danh sách sản phẩm</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/newproduct">
+                                    <span>Thêm Sản Phẩm</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label">Bình luận</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </aside>
+
+        <section class="is-hero-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <h1 class="title">
+                    Danh sách người dùng
+                </h1>
+            </div>
+        </section>
+
+        <section class="section main-section">
+            <div class="card-content">
+                <table id="danhsach">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Email</th>
+                            <th>Sửa/xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% listUser.forEach((user)=> { %>
+                            <tr>
+                                <td>
+                                    <%= user.id %>
+                                </td>
+                                <td>
+                                    <%= user.userName %>
+                                </td>
+                                <td>
+                                    <%= user.email %>
+                                </td>
+                                <td>
+                                    <button class="sua">Sửa</button>
+                                    <button class="xoa">Xóa</button>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <div class="table-pagination">
+                    <div class="flex">
+                        <div class="buttons">
+                            <button type="button" class="button active">1</button>
+                            <button type="button" class="button">2</button>
+                            <button type="button" class="button">3</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts below are for demo only -->
+    <script type="text/javascript" src="/js/admin/main.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="/js/admin/chart.sample.min.js"></script>
+
+
+    <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+
+</body>
+
+</html>

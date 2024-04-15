@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <title>Sửa sản phẩm</title>
+    <%- include('./layout/head.ejs') %>
+</head>
+
+<body>
+    <div id="app">
+        <nav id="navbar-main" class="navbar is-fixed-top">
+            <div class="navbar-brand">
+                <a class="navbar-item mobile-aside-button">
+                    <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
+                </a>
+            </div>
+            <div class="navbar-brand is-right">
+                <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
+                    <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
+                </a>
+            </div>
+            <div class="navbar-menu" id="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item dropdown has-divider has-user-avatar">
+                        <a class="navbar-link">
+                            <div class="user-avatar">
+                                <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe"
+                                    class="rounded-full">
+                            </div>
+                            <div class="is-user-name"><span>
+                                    <%= username %>
+                                </span></div>
+                            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a href="" class="navbar-item">
+                                <span class="icon"><i class="mdi mdi-account"></i></span>
+                                <span>My Profile</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon"><i class="mdi mdi-settings"></i></span>
+                                <span>Settings</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon"><i class="mdi mdi-email"></i></span>
+                                <span>Messages</span>
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item" href="/admin/logout">
+                                <span class="icon"><i class="mdi mdi-logout"></i></span>
+                                <span>Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <aside class="aside is-placed-left is-expanded">
+            <div class="aside-tools">
+                <div>
+                    Admin
+                </div>
+            </div>
+            <div class="menu is-menu-main">
+                <ul class="menu-list">
+                    <li class="">
+                        <a href="/admin/">
+                            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+                            <span class="menu-item-label">Tổng quan</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="menu-list">
+                    <li class="">
+                        <a href="/admin/users">
+                            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                            <span class="menu-item-label">Người dùng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label">Loại Sách</span>
+                            <span class="icon"><i class="mdi mdi-plus"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/admin/listcatalog">
+                                    <span>Danh sách loại</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/newcatalog">
+                                    <span>Thêm loại</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label"> Sản phẩm</span>
+                            <span class="icon"><i class="mdi mdi-plus"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/admin/listproducts">
+                                    <span>Danh sách sản phẩm</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/newproduct">
+                                    <span>Thêm Sản Phẩm</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="">
+                            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                            <span class="menu-item-label">Bình luận</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </aside>
+
+        <section class="is-hero-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <h1 class="title">
+                    Sửa sản phẩm
+                </h1>
+            </div>
+        </section>
+
+        <section class="section main-section">
+            <div class="card-content">
+                <form action="/admin/update-product?_method=PUT" method="post" enctype="multipart/form-data">
+                    <div class="field">
+                        <label class="label" for="nameProduct">Tên sản phẩm</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control icons-left">
+                                    <input id="nameProduct" class="input" type="text"
+                                        value="<%= product[0].nameProduct %>" name="nameProduct">
+                                    <!-- <span class="icon left"><i class="mdi mdi-account"></i></span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="dateProduct">Ngày thêm</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control icons-left">
+                                    <input id="dateProduct" class="input" type="date"
+                                        value="<%= product[0].dateProduct %>" name="dateProduct">
+                                    <!-- <span class="icon left"><i class="mdi mdi-account"></i></span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="authorProduct">Tác giả</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control icons-left">
+                                    <input id="authorProduct" class="input" value="<%= product[0].authorProduct %>"
+                                        type="text" name="authorProduct">
+                                    <!-- <span class="icon left"><i class="mdi mdi-account"></i></span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="image">Hình ảnh</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control icons-left">
+                                    <input class="input" id="image" name="image" type="file">
+                                    <!-- <span class="icon left"><i class="mdi mdi-account"></i></span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="isbn">Mã ISBN</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control icons-left">
+                                    <input class="input" id="isbn" value="<%= product[0].ISBN %>" name="isbn"
+                                        type="text">
+                                    <!-- <span class="icon left"><i class="mdi mdi-account"></i></span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="publishingYear">Năm xuất bản</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control icons-left">
+                                    <input class="input" id="publishingYear" value="<%= product[0].publishingYear %>"
+                                        name="publishingYear" type="text">
+                                    <!-- <span class="icon left"><i class="mdi mdi-account"></i></span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="numberOfPage">Số trang</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control icons-left">
+                                    <input class="input" id="numberOfPage" value="<%= product[0].numberOfPage %>"
+                                        name="numberOfPage" type="text">
+                                    <!-- <span class="icon left"><i class="mdi mdi-account"></i></span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Loại</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control icons-left">
+                                    <!-- <input class="input" type="text" placeholder=""> -->
+                                    <select name="catalog" class="input" id="cat_id">
+                                        <option value="">-- Chọn loại sách --</option>
+                                        <% listCatalog.forEach((cata)=> { %>
+                                            <% if(cata.idCategory==product[0].idCategory) { %>
+                                                <option value="<%= cata.idCategory %>" selected>
+                                                    <%= cata.nameCategory %>
+                                                </option>
+                                                <% } else { %>
+                                                    <option value="<%= cata.idCategory %>">
+                                                        <%= cata.nameCategory %>
+                                                    </option>
+                                                    <% } %>
+                                                        <% }) %>
+                                    </select>
+                                    <!-- <span class="icon left"><i class="mdi mdi-account"></i></span> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="description">Mô tả</label>
+                        <div class="control">
+                            <textarea style="border: 1px solid black; border-radius: 5px; padding: 5px;" id="detail"
+                                rows="10" cols="130" name="description"
+                                placeholder="Thêm mô tả"><%= product[0].description %></textarea>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="id" value="<%= product[0].idProduct %>">
+
+
+                    <div class="field grouped">
+                        <div class="control">
+                            <button id="btnLuu" class="button green">
+                                Cập nhật
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts below are for demo only -->
+    <script type="text/javascript" src="/js/admin/main.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="/js/admin/chart.sample.min.js"></script>
+
+
+    <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+/* .login-register {
+    display: flex;
+} */
+
+
+.login,
+.register {
+    color: black;
+}
+
+.login:hover,
+.register:hover {
+    color: #da9c97;
+}
+
+.slide {
+    object-fit: contain;
+}
+
+.text-truncate {
+    padding: 0 10px;
+}
+
+.xinchao_user {
+    width: 25rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.xinchao_user p,
+.xinchao_user b {
+    margin: 0;
+}
+
+.login-register {
+    width: 23rem;
+    display: flex;
+    justify-content: end;
+}
+
+.login_comment {
+    position: relative;
+    width: 40rem;
+    height: 3rem;
+    background-color: #da9c97;
+}
+
+.login_comment p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}

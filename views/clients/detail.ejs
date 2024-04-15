@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>D Shop</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <%- include('./layouts/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./layouts/header.ejs') %>
+        <%- include('./layouts/menu.ejs') %>
+
+
+            <!-- Shop Detail Start -->
+            <div class="container-fluid py-5">
+                <div class="row px-xl-5">
+                    <div class="col-lg-5 pb-5">
+                        <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner border">
+                                <div class="carousel-item active">
+                                    <img class="w-100" style=" height: 500px;" src="/<%= pro.images %>" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 pb-5">
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="pt-1">(<%= totalComments %>)</small>
+                            </div>
+                        </div>
+                        <h3 class="font-weight-semi-bold">
+                            <%= pro.nameProduct %>
+                        </h3>
+                        <ul>
+                            <li class="font-weight-semi-bold">Mã ISBN:
+                                <span style="color: black; font-weight: bold;">
+                                    <%= pro.ISBN %>
+                                </span>
+                            </li>
+                            <li class="font-weight-semi-bold">Tác giả:
+                                <span style="color: red; font-weight: bold;">
+                                    <%= pro.authorProduct %>
+                                </span>
+                            </li>
+                            <li class="font-weight-semi-bold">Số trang:
+                                <span style="color: black; font-weight: bold;">
+                                    <%= pro.numberOfPage %>
+                                </span>
+                            </li>
+                            <li class="font-weight-semi-bold">Năm phát hành:
+                                <span style="color: black; font-weight: bold;">
+                                    <%= pro.publishingYear %>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row px-xl-5">
+                    <div class="col">
+                        <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                            <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-2">Thông tin</a>
+                            <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Đánh giá (<%=
+                                    totalComments %>)</a>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tab-pane-2">
+                                <h4 class="mb-3">Thông tin sản phẩm</h4>
+                                <% let stringFromDatabase=pro.description; let
+                                    arrayFromString=stringFromDatabase.split("\n");
+                                    arrayFromString=arrayFromString.map((item, index, array)=> {
+                                    if (index === array.length - 1) {
+                                    return item;
+                                    } else {
+                                    return item + "\n";
+                                    }
+                                    });
+
+                                    let resultString = arrayFromString.join("");
+                                    %>
+                                    <div style="width: 100%; ">
+                                        <pre style="font-size: initial;white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word"
+                                            id="description"><%= resultString %>
+                                    </pre>
+                                    </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-pane-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 class="mb-4">Đánh giá cho <%= pro.nameProduct %>
+                                        </h4>
+                                        <div class="media mb-4">
+                                            <div class="media-body">
+                                                <% comment.forEach((cmt)=> { %>
+                                                    <h6>
+                                                        <%= cmt.userName %><small> - <i>
+                                                                    <% const formattedDate=new
+                                                                        Date(cmt.dateComment).toLocaleDateString() %>
+                                                                        <%= formattedDate %>
+                                                                </i></small>
+                                                    </h6>
+                                                    <p>
+                                                        <%= cmt.contents %>
+                                                    </p>
+                                                    <% }) %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% if(username) { %>
+                                        <div class="col-md-6">
+                                            <h4 class="mb-4">Để lại đánh giá</h4>
+                                            <small>Địa chỉ email của bạn sẽ không được công bố. Các trường bắt buộc được
+                                                đánh dấu
+                                                *</small>
+                                            <form action="/new-comment" method="post">
+                                                <div class="form-group">
+                                                    <label for="message">Đánh giá của bạn *</label>
+                                                    <textarea name="content" id="message" cols="30" rows="5"
+                                                        class="form-control"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="userName">Tên *</label>
+                                                    <input type="text" class="form-control" value="<%= username %>"
+                                                        name="userName" id="userName">
+                                                    <input type="hidden" name="idProduct" value="<%= pro.idProduct %>">
+                                                </div>
+                                                <div class="form-group mb-0">
+                                                    <input type="submit" value="Để lại đánh giá của bạn"
+                                                        class="btn btn-primary px-3">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="login_comment">
+                                                <p>Đăng nhập để bình luận</p>
+                                            </div>
+                                            <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shop Detail End -->
+
+            <%- include('./layouts/footer.ejs') %>
+</body>
+
+</html>
